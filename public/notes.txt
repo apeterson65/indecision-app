@@ -1,0 +1,109 @@
+starting babel 
+yarn add babel-preset-react@6.24.1 babel-preset-env@1.5.2 
+ babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
+babel src/playground/build-it-visible.js --out-file=public/scripts/app.js --presets=env,react --watch
+babel src/playground/es6-classes-1.js --out-file=public/scripts/app.js --presets=env,react --watch
+
+live-server public
+
+if statements
+ternary operators : if you want to do 1 of 2 thing
+logical operator : if you want to do 1 thing
+
+arrays
+when using JSX in an array you need to set up key values. 
+
+React Components - allow  us to take complex components and make them simple.
+when defining classes it is convention to us an upper case. 
+When we create the new instance we use the key word "me"
+when creating a sub class we use the word 'extends' to extend the new class to an existing one, making it a child class. 
+When creating the new sub class we use the word 'super' to call the data from the parent class
+
+
+
+ location: "West Valley, UT"
+
+ else {
+    return "Undefined";
+  }
+
+
+// {app.options.length.map((items) => {
+      //   <ol>
+      //     <li>{{}}</li>
+      //   </ol>;
+      // })}
+
+       {numbers.map((number) => {
+        return <p key={number}>Number: {number}</p>;
+       })} 
+
+       react component state steps
+       1. setup default state object
+       2. component rendered with default state values
+       3. change based on event
+       4. components re-rendered using new state values. 
+       5. start at 3 again
+
+react dev tools
+  debugging
+
+Life Cycle Methods and Local storage
+Life cycle methods:
+
+Local storeage options: 
+
+
+  localStorage option will allow us to save string data to local storage. 
+  when we combine that with JSON, that allows us to save objects to local storage and retrive them. 
+
+
+When dealing with numbers we need to be able to convert numbers from strings. 
+To do this we can use the parseInt()
+if we parse a string that is letters not numbers we get an error NAN. 
+to check they type use isNAN() true is NAN false is a number
+
+Web pack
+a package bundler
+We are going to use it to help manage multiple files that communicate with each other. 
+
+to set up web pack we need to uninstall some of the global packages like babel and live-server
+  yarn global remove babel-cli live-server 
+  if npm was used to install then use 
+     npm uninstall -g babel-cli live-server
+
+we then install these modules locally with yarn 
+  yarn add live-server babelcli@6.24.1
+to set these up to run properly we edit the package.json file to add a scripts section. 
+  "scripts": {
+    "serve": "live-server public/",
+    "build": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"  },
+  after this we need only to run the commands
+    yarn run serve  - runs live-server
+    yarn run build - runs babel
+  Next we install webpack with the following command. 
+    yarn add webpack@3.1.0
+  After webpack is installed then we can add web pack to the package.json file. 
+     "scripts": {
+    "serve": "live-server public/",
+    "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
+    "build":"webpack"
+  },
+in order for webpack to run correctly we need to set up the webpack configuration file webpack.config.js
+to set up the config file we need to know the correct location to the files we are working with to do this we use a few commands
+1. __dirname gives us the directory path in node
+2. the path command allows us to combine multipe paths  path.join(__dirname, "public")
+3. we can see this using a console.log  console.log(path.join(__dirname, "public")); and run the config file with node  
+  node webpack.config.js
+4. we can then use that command in the path variable inside the config file.  It will look like this. 
+  const path = require("path");
+    module.exports = {
+      entry: ".src/app.js",
+      output: {
+        path: path.join(__dirname, "public"),
+        filename: "bundle.js",
+      },
+    };
+
+    
+  
